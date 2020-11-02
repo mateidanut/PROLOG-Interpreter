@@ -1,0 +1,39 @@
+
+Lies(Lion, Monday)
+Lies(Lion, Tuesday)
+Lies(Lion, Wednesday)
+True(Lion, Thursday)
+True(Lion, Friday)
+True(Lion, Saturday)
+True(Lion, Sunday)
+
+True(Unicorn, Monday)
+True(Unicorn, Tuesday)
+True(Unicorn, Wednesday)
+Lies(Unicorn, Thursday)
+Lies(Unicorn, Friday)
+Lies(Unicorn, Saturday)
+True(Unicorn, Sunday)
+
+Yesterday(Monday, Sunday)
+Yesterday(Tuesday, Monday)
+Yesterday(Wednesday, Tuesday)
+Yesterday(Thursday, Wednesday)
+Yesterday(Friday, Thursday)
+Yesterday(Saturday, Friday)
+Yesterday(Sunday, Saturday)
+
+IWasLyingYesterday(?animal, ?day) : Lies(?animal, ?day), Yesterday(?day, ?yesterday), True(?animal, ?yesterday)
+IWasLyingYesterday(?animal, ?day) : True(?animal, ?day), Yesterday(?day, ?yesterday), Lies(?animal, ?yesterday)
+
+Today(?day) : IWasLyingYesterday(Lion, ?day), IWasLyingYesterday(Unicorn, ?day)
+
+? Today(?day)
+: day : Thursday
+
+? IWasLyingYesterday(?animal, ?day)
+: animal : Lion ; day : Monday
+: animal : Lion ; day : Thursday
+: animal : Unicorn ; day : Sunday
+: animal : Unicorn ; day : Thursday
+
